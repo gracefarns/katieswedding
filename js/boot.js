@@ -12,7 +12,7 @@
   var c = cfg.colors || {};
   var vars = {
     '--cabernet': c.cabernet, '--black-cherry': c.blackCherry, '--rosewood': c.rosewood,
-    '--petal': c.petal, '--ivory': c.ivory, '--ink': c.ink, '--green': c.green, '--gold': c.gold,
+    '--petal': c.petal, '--ivory': c.ivory, '--ink': c.ink, '--green': c.green, '--gold': c.gold, '--wine': c.wine,
     '--text-on-light': c.textOnLight, '--text-on-dark': c.textOnDark,
     '--font-heading': (cfg.fonts || {}).heading,
     '--font-script': (cfg.fonts || {}).script,

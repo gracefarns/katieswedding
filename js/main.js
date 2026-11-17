@@ -31,7 +31,7 @@
     first: couple.first, second: couple.second,
     firstFull: couple.firstFull, secondFull: couple.secondFull,
     dateLong: longDate(cfg.WEDDING_DATE),
-    venueName: venue.name, venueCity: venue.city
+    venueCeremony: venue.ceremony, venueReception: venue.reception
   };
   $$('[data-fill]').forEach(function (el) {
     var value = text[el.getAttribute('data-fill')];

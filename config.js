@@ -36,8 +36,8 @@ window.WEDDING_CONFIG = {
     secondFull: 'Will Hartman'
   },
   venue: {
-    name: 'Highland Gardens',
-    city: 'Highland, Utah'
+    ceremony:  'Draper Temple',      // shown first
+    reception: 'Highland Gardens'    // shown second
   },
 
   /* ---- Registry -----------------------------------------------------------
@@ -58,6 +58,7 @@ window.WEDDING_CONFIG = {
     ivory:       '#F7F1EA',   // Ivory paper and lace
     ink:         '#2E1F2A',   // Blackberry Ink – small details only
     green:       '#8C9A6E',   // Amaranth green – a single leaf-coloured touch
+    wine:        '#56192B',   // Wine – the footer: a pinker, purpler burgundy (from the save-the-date)
     gold:        '#B08D57',   // Antique gold – thin rules, small ornaments
     textOnLight: '#361319',
     textOnDark:  '#F3E9E2'
@@ -68,8 +69,8 @@ window.WEDDING_CONFIG = {
      (fonts.google.com gives you the address).                               */
   fonts: {
     heading: "'Cormorant Garamond', 'Times New Roman', serif",
-    script:  "'Pinyon Script', 'Snell Roundhand', cursive",
+    script:  "'WindSong', 'Snell Roundhand', cursive",
     body:    "'EB Garamond', 'Cormorant Garamond', Georgia, serif",
-    googleFontsUrl: 'https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Pinyon+Script&display=swap'
+    googleFontsUrl: 'https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=WindSong:wght@400;500&display=swap'
   }
 };
