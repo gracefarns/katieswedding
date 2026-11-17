@@ -151,7 +151,7 @@ html:not([data-rsvp="open"]) [data-rsvp-only] { display: none !important; }
     linear-gradient(var(--rosewood), var(--rosewood)) right center / 50px 1px no-repeat;
   opacity: .9;
 }
-.section__floral { width: auto; height: 170px; margin: 0 auto 26px; }
+.section__floral { width: min(400px, 84%); height: auto; margin: 0 auto 30px; }
 .lede {
   max-width: 30em; margin: 30px auto 0;
   font-size: 21px; font-style: italic; line-height: 1.7;
@@ -252,10 +252,10 @@ html:not([data-rsvp="open"]) [data-rsvp-only] { display: none !important; }
 .hero__stage { position: relative; z-index: 2; width: min(100%, 800px); }
 .hero__card  { text-align: center; padding: 50px 22px 44px; z-index: 1; }
 
-/* flowers lie under the paper and spill out at two opposite corners */
-.hero__floral { position: absolute; z-index: 0; height: auto; filter: drop-shadow(0 18px 20px rgba(16, 4, 6, .45)); }
-.hero__floral--top    { width: 430px; left: -205px; top: -178px; }
-.hero__floral--bottom { width: 420px; right: -214px; bottom: -150px; }
+/* flowers wrap two opposite corners of the card and trail along its edges */
+.hero__floral { position: absolute; z-index: 2; height: auto; filter: drop-shadow(0 14px 16px rgba(16, 4, 6, .42)); }
+.hero__floral--top    { width: 520px; left: -172px; top: -150px; }
+.hero__floral--bottom { width: 520px; right: -172px; bottom: -150px; }
 
 .hero__names {
   margin: 16px 0 10px;
@@ -460,8 +460,8 @@ html:not([data-rsvp="open"]) [data-rsvp-only] { display: none !important; }
   .hero__names .hero__amp { margin: -.1em 0 -.05em; line-height: 1; }
   .hero__date, .hero__venue { display: block; }        /* date on one line, place on the next */
   .hero__date i { display: none; }
-  .hero__floral--top    { width: 330px; left: -150px; top: -140px; }
-  .hero__floral--bottom { width: 320px; right: -150px; bottom: -118px; }
+  .hero__floral--top    { width: 400px; left: -128px; top: -114px; }
+  .hero__floral--bottom { width: 400px; right: -128px; bottom: -114px; }
 }
 
 @media (max-width: 900px) {
@@ -473,7 +473,7 @@ html:not([data-rsvp="open"]) [data-rsvp-only] { display: none !important; }
   body { font-size: 18px; }
   .section { padding: 92px 0 100px; }
   .section__head { margin-bottom: 56px; }
-  .section__floral { height: 146px; }
+  .section__floral { width: min(320px, 84%); }
   .heading { letter-spacing: .2em; margin-right: -.2em; }
 
   .nav__list { gap: 26px; }
@@ -489,8 +489,8 @@ html:not([data-rsvp="open"]) [data-rsvp-only] { display: none !important; }
   .hero__venue i { display: none; }
   .hero__place { display: block; }
   .hero__lace { height: 100%; right: -34%; }
-  .hero__floral--top    { width: 236px; left: -44px; top: -118px; }
-  .hero__floral--bottom { width: 226px; right: -58px; bottom: -104px; }
+  .hero__floral--top    { width: 262px; left: -36px; top: -78px; }
+  .hero__floral--bottom { width: 262px; right: -36px; bottom: -76px; }
 
   .timeline__item { display: block; text-align: center; }
   .timeline__item::before { display: none; }
