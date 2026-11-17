@@ -31,9 +31,9 @@ window.WEDDING_CONFIG = {
   /* ---- Names and place --------------------------------------------------- */
   couple: {
     first: 'Katie',
-    second: 'William',
+    second: 'Will',
     firstFull: 'Katie Farnsworth',
-    secondFull: 'William Hartman'
+    secondFull: 'Will Hartman'
   },
   venue: {
     name: 'Highland Gardens',
@@ -52,9 +52,9 @@ window.WEDDING_CONFIG = {
   /* ---- Colours ------------------------------------------------------------ */
   colors: {
     cabernet:    '#52171C',   // Cabernet Velvet – headings on light, buttons, monogram
-    blackCherry: '#240C0E',   // Black Cherry – dark sections, hero satin, footer
+    blackCherry: '#240C0E',   // Black Cherry – the deepest shadows in the footer
     rosewood:    '#985B5D',   // Dusty Rosewood – script accents, small labels, hairlines
-    petal:       '#EBD6D5',   // Soft Petal – light section backgrounds, hover states
+    petal:       '#EBD6D5',   // Soft Petal – hero satin, light section backgrounds, hover states
     ivory:       '#F7F1EA',   // Ivory paper and lace
     ink:         '#2E1F2A',   // Blackberry Ink – small details only
     green:       '#8C9A6E',   // Amaranth green – a single leaf-coloured touch
