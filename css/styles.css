@@ -1,0 +1,531 @@
+/* ==========================================================================
+   Katie & William — stylesheet
+   Colours and fonts are NOT set here: they come from config.js (see the
+   --variables below, which js/boot.js fills in). Images live in /images.
+
+   1. Base            5. Our Story (timeline)   9. Footer
+   2. Shared pieces   6. Gallery + lightbox    10. Small screens
+   3. Navigation      7. Registry
+   4. Home (hero)     8. RSVP
+   ========================================================================== */
+
+/* ---------- 1. Base ------------------------------------------------------- */
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-padding-top: 56px;                 /* keeps headings clear of the menu bar */
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 19px;
+  line-height: 1.75;
+  color: var(--text-on-light);
+  background: var(--ivory);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  transition: opacity 1.1s ease;            /* the one soft fade, as the page opens */
+}
+html.is-loading body { opacity: 0; }
+
+img { display: block; max-width: 100%; height: auto; }
+p { margin: 0 0 1em; }
+ul, ol { margin: 0; padding: 0; list-style: none; }
+h1, h2, h3 { margin: 0; font-weight: 300; }
+a { color: inherit; }
+button { font: inherit; color: inherit; }
+
+/* Before / after the wedding, and the RSVP switch (set by js/boot.js) */
+html[data-phase="before"] [data-phase-only="after"],
+html[data-phase="after"]  [data-phase-only="before"],
+html:not([data-phase])    [data-phase-only],
+html:not([data-rsvp="open"]) [data-rsvp-only] { display: none !important; }
+
+.skip-link {
+  position: absolute; left: -999px; top: 0; z-index: 100;
+  padding: 10px 18px; background: var(--ivory); color: var(--cabernet);
+}
+.skip-link:focus { left: 12px; top: 12px; }
+
+:focus-visible { outline: 1px solid var(--gold); outline-offset: 4px; }
+
+/* ---------- 2. Shared pieces ---------------------------------------------- */
+.wrap         { width: min(100% - 48px, 880px);  margin-inline: auto; position: relative; }
+.wrap--wide   { width: min(100% - 48px, 1080px); }
+.wrap--narrow { width: min(100% - 48px, 520px); }
+
+.section { position: relative; padding: 128px 0 136px; isolation: isolate; }
+
+/* plain ivory cotton paper */
+.section--paper {
+  background: var(--ivory) url("../images/textures/paper-ivory.jpg") 0 0 / 280px 280px;
+}
+
+/* blush damask, kept faint over ivory */
+.section--damask { background: var(--ivory); }
+.section--damask::before {
+  content: ""; position: absolute; inset: 0; z-index: -1;
+  background: url("../images/textures/damask-blush.jpg") center top / 520px auto;
+  opacity: .36;
+}
+
+/* deep burgundy paper with the embossed tulips */
+.section--dark,
+.footer {
+  color: var(--text-on-dark);
+  background: var(--black-cherry) url("../images/textures/tulip-emboss-burgundy.jpg") center top / 640px auto;
+}
+.section--dark::before,
+.footer::before {
+  content: ""; position: absolute; inset: 0; z-index: -1;
+  background:
+    linear-gradient(to bottom, rgba(36, 12, 14, .55), rgba(36, 12, 14, .22) 22%, rgba(36, 12, 14, .22) 78%, rgba(36, 12, 14, .6));
+}
+
+/* Deckled handmade paper. One image, cut in nine: torn corners stay put,
+   edges and centre repeat, so a card can be any size. The soft shadow is
+   part of the image. */
+.paper {
+  position: relative;
+  border: 38px solid transparent;
+  border-image: url("../images/textures/paper-deckled.webp") 140 fill / 70px / 32px round;
+  color: var(--text-on-light);
+}
+
+/* small uppercase label, widely tracked */
+.label {
+  margin: 0 0 14px;
+  font-family: var(--font-heading);
+  font-weight: 500;
+  font-size: 12.5px;
+  line-height: 1.6;
+  letter-spacing: .34em;
+  text-transform: uppercase;
+  text-wrap: balance;
+  color: var(--rosewood);
+}
+.label--ink { color: var(--ink); }
+.label i { font-style: normal; margin: 0 .7em; color: var(--gold); }
+.label__aside { letter-spacing: .2em; opacity: .75; }
+
+.heading {
+  font-family: var(--font-heading);
+  font-weight: 300;
+  font-size: clamp(34px, 5.2vw, 50px);
+  line-height: 1.15;
+  letter-spacing: .26em;
+  margin-right: -.26em;                     /* optically re-centres tracked caps */
+  text-transform: uppercase;
+  color: var(--cabernet);
+}
+.section--dark .heading { color: var(--text-on-dark); }
+.section--dark .label   { color: var(--petal); opacity: .8; }
+
+.subheading {
+  font-family: var(--font-heading);
+  font-weight: 400;
+  font-size: 22px;
+  letter-spacing: .22em;
+  margin-right: -.22em;
+  text-transform: uppercase;
+  color: var(--cabernet);
+  margin-bottom: 14px;
+}
+
+.script-touch {
+  margin: 0 0 2px;
+  font-family: var(--font-script);
+  font-size: 34px;
+  line-height: 1.2;
+  color: var(--rosewood);
+}
+
+.section__head { text-align: center; margin-bottom: 80px; }
+.section__head::after {                     /* hairline · gold point · hairline */
+  content: ""; display: block; width: 132px; height: 7px; margin: 30px auto 0;
+  background:
+    linear-gradient(var(--gold), var(--gold)) center / 5px 5px no-repeat,
+    linear-gradient(var(--rosewood), var(--rosewood)) left center / 50px 1px no-repeat,
+    linear-gradient(var(--rosewood), var(--rosewood)) right center / 50px 1px no-repeat;
+  opacity: .9;
+}
+.section__floral { width: auto; height: 170px; margin: 0 auto 26px; }
+.lede {
+  max-width: 30em; margin: 30px auto 0;
+  font-size: 21px; font-style: italic; line-height: 1.7;
+}
+
+.floral { pointer-events: none; user-select: none; }
+
+.rule { display: flex; align-items: center; justify-content: center; gap: 14px; margin: 26px 0; }
+.rule::before, .rule::after { content: ""; width: 54px; height: 1px; background: var(--gold); opacity: .8; }
+.rule span { width: 5px; height: 5px; background: var(--gold); transform: rotate(45deg); }
+
+.button {
+  display: inline-block;
+  padding: 17px 46px 16px;
+  border: 1px solid var(--cabernet);
+  border-radius: 0;
+  background: var(--cabernet);
+  color: var(--ivory);
+  font-family: var(--font-heading);
+  font-weight: 500;
+  font-size: 13px;
+  letter-spacing: .34em;
+  text-indent: .34em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background-color .35s ease, color .35s ease, border-color .35s ease;
+}
+.button:hover, .button:focus-visible { background: var(--petal); color: var(--cabernet); }
+
+/* scalloped lace hem where an ivory section meets a burgundy one */
+.lace-hem {
+  position: absolute; left: 0; right: 0; top: -1px; height: 54px; z-index: 1;
+  background: url("../images/lace/lace-trim.webp") center top / auto 100% repeat-x;
+  filter: drop-shadow(0 5px 5px rgba(20, 6, 8, .4));
+  pointer-events: none;
+}
+
+/* a band of blush satin where the burgundy gallery gives way to the registry */
+.satin-ribbon {
+  position: absolute; left: 0; right: 0; top: 0; height: 64px;
+  background: var(--petal) url("../images/textures/satin-blush.jpg") center 38% / cover;
+  box-shadow: 0 10px 18px -12px rgba(82, 23, 28, .45), inset 0 8px 12px -10px rgba(36, 12, 14, .5);
+}
+
+/* ---------- 3. Navigation ------------------------------------------------- */
+.nav {
+  position: sticky; top: 0; z-index: 20;
+  height: 56px;
+  background: rgba(36, 12, 14, .9);
+  border-bottom: 1px solid rgba(176, 141, 87, .38);
+  -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+}
+.nav__list { display: flex; justify-content: center; align-items: center; gap: 44px; height: 100%; }
+.nav a {
+  display: block; padding: 6px 0 4px; white-space: nowrap;
+  font-family: var(--font-heading);
+  font-weight: 500;
+  font-size: 12px;
+  letter-spacing: .34em;
+  margin-right: -.34em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--text-on-dark);
+  opacity: .78;
+  border-bottom: 1px solid transparent;
+  transition: color .3s ease, border-color .3s ease, opacity .3s ease;
+}
+.nav a:hover, .nav a:focus-visible { color: var(--petal); opacity: 1; border-bottom-color: var(--gold); }
+
+/* ---------- 4. Home (hero) ------------------------------------------------ */
+.hero {
+  position: relative;
+  margin-top: -56px;                        /* satin runs up behind the menu bar */
+  min-height: 100vh; min-height: 100svh;
+  display: grid; place-items: center;
+  padding: 150px 24px 120px;
+  overflow: hidden;
+  isolation: isolate;
+  background: var(--black-cherry) url("../images/textures/satin-burgundy.jpg") center / cover no-repeat;
+}
+.hero::before {                             /* candle-lit: darker toward the edges */
+  content: ""; position: absolute; inset: 0; z-index: 0;
+  background:
+    radial-gradient(ellipse 75% 70% at 50% 46%, rgba(36, 12, 14, .18), rgba(36, 12, 14, .78) 100%),
+    linear-gradient(to bottom, rgba(36, 12, 14, .5), rgba(36, 12, 14, 0) 26%, rgba(36, 12, 14, 0) 72%, rgba(36, 12, 14, .82));
+}
+.hero__lace {                               /* ivory Chantilly lace, draped diagonally */
+  position: absolute; top: 0; right: 0; z-index: 1;
+  height: 106%; width: auto; max-width: none;
+  filter: drop-shadow(-10px 22px 26px rgba(16, 4, 6, .5));
+  pointer-events: none; user-select: none;
+}
+.hero::after {                              /* lets the lace fall into shadow at the foot of the page */
+  content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 26%; z-index: 1;
+  background: linear-gradient(to bottom, rgba(36, 12, 14, 0), rgba(36, 12, 14, .7));
+  pointer-events: none;
+}
+.hero__stage { position: relative; z-index: 2; width: min(100%, 800px); }
+.hero__card  { text-align: center; padding: 50px 22px 44px; z-index: 1; }
+
+/* flowers lie under the paper and spill out at two opposite corners */
+.hero__floral { position: absolute; z-index: 0; height: auto; filter: drop-shadow(0 18px 20px rgba(16, 4, 6, .45)); }
+.hero__floral--top    { width: 430px; left: -205px; top: -178px; }
+.hero__floral--bottom { width: 420px; right: -214px; bottom: -150px; }
+
+.hero__names {
+  margin: 16px 0 10px;
+  font-family: var(--font-script);
+  font-weight: 400;
+  font-size: clamp(60px, 8vw, 104px);
+  line-height: 1.12;
+  color: var(--cabernet);
+}
+.hero__amp {                                /* a serif italic ampersand sits more quietly than the script one */
+  font-family: var(--font-heading); font-style: italic; font-weight: 300;
+  font-size: .5em; margin: 0 .12em; color: var(--rosewood);
+}
+
+.hero__status {
+  margin: 0;
+  font-family: var(--font-heading);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 23px;
+  letter-spacing: .03em;
+  color: var(--text-on-light);
+}
+.hero__dateline {
+  margin: 0;
+  font-family: var(--font-heading);
+  font-weight: 500;
+  font-size: 12.5px;
+  line-height: 2.1;
+  letter-spacing: .3em;
+  margin-right: -.3em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+.hero__dateline i { font-style: normal; margin: 0 .7em; color: var(--gold); }
+.hero__dateline span { white-space: nowrap; }
+
+/* ---------- 5. Our Story -------------------------------------------------- */
+.timeline { position: relative; }
+
+.timeline__item {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  column-gap: 112px;
+}
+.timeline__item::before {                   /* the spine: a dusty-rosewood hairline */
+  content: ""; position: absolute; left: 50%; top: -8px; bottom: -8px; width: 1px;
+  background: var(--rosewood); opacity: .55;
+}
+.timeline__photo { width: min(100%, 330px); margin: 0; justify-self: end; }
+.timeline__photo img { width: calc(100% + 40px); max-width: none; margin: -20px; }
+.timeline__text { text-align: center; max-width: 340px; justify-self: start; }
+.timeline__text p:last-child { margin-bottom: 0; }
+
+/* every other entry mirrors */
+.timeline__item:nth-child(4n + 3) .timeline__photo { grid-column: 2; grid-row: 1; justify-self: start; }
+.timeline__item:nth-child(4n + 3) .timeline__text  { grid-column: 1; grid-row: 1; justify-self: end; }
+
+.timeline__ornament {                       /* small gold point between entries */
+  display: flex; flex-direction: column; align-items: center; gap: 13px;
+  padding: 8px 0;
+}
+.timeline__ornament::before, .timeline__ornament::after {
+  content: ""; width: 1px; height: 40px; background: var(--rosewood); opacity: .55;
+}
+.timeline__ornament span {
+  width: 9px; height: 9px; transform: rotate(45deg);
+  background: linear-gradient(135deg, #d9bf8c, var(--gold) 55%, #8a6b3c);
+}
+
+/* ---------- 6. Gallery + lightbox ------------------------------------------ */
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 64px 60px;
+}
+.gallery__item {
+  display: block; width: 100%; margin: 0; padding: 9px;
+  border: 0; border-radius: 0; cursor: zoom-in;
+  background: var(--ivory) url("../images/textures/paper-ivory.jpg") 0 0 / 280px 280px;   /* thin paper border */
+  box-shadow: 0 22px 34px -18px rgba(12, 3, 4, .8), 0 2px 5px rgba(12, 3, 4, .35);
+}
+.gallery__item img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; transition: opacity .4s ease; }
+.gallery__item:hover img, .gallery__item:focus-visible img { opacity: .86; }
+
+.lightbox {
+  position: fixed; inset: 0; z-index: 50;
+  display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 28px;
+  padding: 72px 32px 40px;
+  background: rgba(30, 9, 11, .96);
+  opacity: 0; transition: opacity .35s ease;
+}
+.lightbox[hidden] { display: none; }
+.lightbox.is-open { opacity: 1; }
+.lightbox__figure { margin: 0; grid-column: 2; }
+.lightbox__img {
+  max-width: min(82vw, 900px); max-height: calc(100vh - 150px); width: auto;
+  padding: 10px;
+  background: var(--ivory) url("../images/textures/paper-ivory.jpg") 0 0 / 280px 280px;
+  box-shadow: 0 30px 60px -20px rgba(0, 0, 0, .7);
+}
+.lightbox button {
+  background: none; border: 0; padding: 12px 6px; cursor: pointer;
+  font-family: var(--font-heading); font-weight: 500; font-size: 12px;
+  letter-spacing: .34em; text-transform: uppercase;
+  color: var(--text-on-dark); opacity: .75;
+  transition: color .3s ease, opacity .3s ease;
+}
+.lightbox button:hover, .lightbox button:focus-visible { color: var(--petal); opacity: 1; }
+.lightbox__close { position: absolute; top: 20px; right: 28px; }
+.lightbox__nav--prev { grid-column: 1; justify-self: end; }
+.lightbox__nav--next { grid-column: 3; justify-self: start; }
+
+/* ---------- 7. Registry ---------------------------------------------------- */
+.registry {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 56px 44px;
+  justify-content: center;
+}
+.registry__card {
+  text-align: center; padding: 26px 6px 22px;
+  border-width: 28px; border-image-width: 52px; border-image-outset: 24px;   /* finer deckle for a small card */
+}
+.registry__name {
+  font-family: var(--font-heading); font-weight: 400; font-size: 21px;
+  letter-spacing: .2em; margin-right: -.2em; text-transform: uppercase;
+  color: var(--cabernet); line-height: 1.4;
+}
+.registry__note { margin: 8px 0 0; font-style: italic; font-size: 17px; color: var(--text-on-light); opacity: .8; }
+.registry__card::after {                    /* the one leaf-green touch */
+  content: ""; display: block; width: 5px; height: 5px; margin: 20px auto 18px;
+  background: var(--green); transform: rotate(45deg);
+}
+.registry__link {
+  order: 3;
+  font-family: var(--font-heading); font-weight: 500; font-size: 12px;
+  letter-spacing: .32em; margin-right: -.32em; text-transform: uppercase; text-decoration: none;
+  color: var(--rosewood);
+  padding-bottom: 5px; border-bottom: 1px solid currentColor;
+  transition: color .3s ease;
+}
+.registry__link:hover, .registry__link:focus-visible { color: var(--cabernet); }
+.registry__card { display: flex; flex-direction: column; align-items: center; }
+.registry__card::after { order: 2; }
+
+/* ---------- 8. RSVP -------------------------------------------------------- */
+.form { text-align: center; }
+.field { margin: 0 0 44px; padding: 0; border: 0; text-align: left; }
+.field .label { display: block; margin-bottom: 6px; }
+.field input[type="text"], .field textarea {
+  display: block; width: 100%;
+  padding: 8px 2px 10px;
+  border: 0; border-bottom: 1px solid var(--rosewood); border-radius: 0;
+  background: transparent;
+  font-family: var(--font-body); font-size: 21px; line-height: 1.5; color: var(--text-on-light);
+  transition: border-color .3s ease;
+  resize: none;
+}
+.field input[type="text"]:focus, .field textarea:focus { outline: 0; border-bottom-color: var(--cabernet); box-shadow: 0 1px 0 var(--cabernet); }
+
+.field--choice legend { padding: 0; margin-bottom: 14px; }
+.choice { display: inline-flex; align-items: center; gap: 12px; margin-right: 40px; cursor: pointer; font-size: 20px; font-style: italic; }
+.choice:last-child { margin-right: 0; }
+.choice input {
+  appearance: none; -webkit-appearance: none;
+  width: 15px; height: 15px; margin: 0; flex: none;
+  border: 1px solid var(--rosewood); border-radius: 50%;
+  background: transparent;
+  transition: background-color .3s ease, border-color .3s ease, box-shadow .3s ease;
+}
+.choice input:checked { background: var(--cabernet); border-color: var(--cabernet); box-shadow: inset 0 0 0 3px var(--ivory); }
+.choice:hover input { border-color: var(--cabernet); }
+
+.form__message { min-height: 1.75em; margin: 28px 0 0; font-style: italic; color: var(--cabernet); }
+.form.is-sent .field, .form.is-sent .button { display: none; }
+.form.is-sent .form__message { font-size: 23px; margin-top: 0; }
+
+/* ---------- 9. Footer ------------------------------------------------------ */
+.footer { position: relative; isolation: isolate; text-align: center; padding: 150px 0 96px; }
+.footer__seal { width: 164px; margin: 0 auto 30px; }
+.footer__names {
+  margin: 0 0 12px;
+  font-family: var(--font-heading); font-weight: 300; font-size: 21px;
+  letter-spacing: .28em; margin-right: -.28em; text-transform: uppercase;
+}
+.footer__amp { color: var(--gold); }
+.footer__date { color: var(--petal); opacity: .8; margin-bottom: 34px; }
+.footer__date span { white-space: nowrap; }
+.footer__thanks {
+  margin: 0;
+  font-family: var(--font-script); font-size: 38px; line-height: 1.3;
+  color: var(--petal);
+}
+
+/* ---------- 10. Small screens ---------------------------------------------- */
+@media (max-width: 1040px) {
+  .hero__stage { width: min(100%, 560px); }
+  .hero__names span { display: block; }
+  .hero__names .hero__amp { margin: -.1em 0 -.05em; line-height: 1; }
+  .hero__date, .hero__venue { display: block; }        /* date on one line, place on the next */
+  .hero__date i { display: none; }
+  .hero__floral--top    { width: 330px; left: -150px; top: -140px; }
+  .hero__floral--bottom { width: 320px; right: -150px; bottom: -118px; }
+}
+
+@media (max-width: 900px) {
+  .gallery { grid-template-columns: repeat(2, 1fr); gap: 48px 44px; }
+  .timeline__item { column-gap: 72px; }
+}
+
+@media (max-width: 680px) {
+  body { font-size: 18px; }
+  .section { padding: 92px 0 100px; }
+  .section__head { margin-bottom: 56px; }
+  .section__floral { height: 146px; }
+  .heading { letter-spacing: .2em; margin-right: -.2em; }
+
+  .nav__list { gap: 26px; }
+  .nav__home { display: none; }
+  .nav a { font-size: 11px; letter-spacing: .26em; margin-right: -.26em; }
+
+  .paper, .registry__card { border-width: 30px; border-image-width: 56px; border-image-outset: 26px; }
+
+  .hero { padding: 132px 26px 118px; }
+  .hero__card { padding: 34px 0 26px; }
+  .hero__status { font-size: 20px; }
+  .hero__dateline { font-size: 11.5px; letter-spacing: .26em; margin-right: -.26em; }
+  .hero__venue i { display: none; }
+  .hero__place { display: block; }
+  .hero__lace { height: 100%; right: -34%; }
+  .hero__floral--top    { width: 236px; left: -44px; top: -118px; }
+  .hero__floral--bottom { width: 226px; right: -58px; bottom: -104px; }
+
+  .timeline__item { display: block; text-align: center; }
+  .timeline__item::before { display: none; }
+  .timeline__photo { margin: 0 auto 34px; width: min(100%, 290px); }
+  .timeline__text { margin: 0 auto; }
+  .timeline__ornament { padding: 30px 0; }
+  .timeline__ornament::before, .timeline__ornament::after { height: 30px; }
+
+  .gallery { gap: 30px 26px; }
+  .gallery__item { padding: 6px; }
+
+  .lightbox { grid-template-columns: 1fr 1fr; grid-template-rows: 1fr auto; padding: 64px 16px 20px; gap: 12px; }
+  .lightbox__figure { grid-column: 1 / -1; grid-row: 1; justify-self: center; }
+  .lightbox__img { max-width: 100%; max-height: calc(100vh - 170px); padding: 6px; }
+  .lightbox__nav--prev { grid-column: 1; grid-row: 2; justify-self: start; }
+  .lightbox__nav--next { grid-column: 2; grid-row: 2; justify-self: end; }
+
+  .registry { gap: 40px; grid-template-columns: minmax(0, 320px); }
+  .choice { display: flex; margin: 0 0 14px; }
+  .lace-hem { height: 42px; }
+  .footer { padding: 118px 0 80px; }
+  .footer__names { font-size: 17px; letter-spacing: .2em; margin-right: -.2em; }
+  .footer__names span, .footer__date span { display: block; }
+  .footer__date i { display: none; }
+  .footer__names .footer__amp { margin: 2px 0; }
+  .footer__thanks { font-size: 31px; }
+  .footer__seal { width: 140px; }
+}
+
+@media (max-width: 380px) {
+  .nav__list { gap: 16px; }
+  .nav a { font-size: 10px; letter-spacing: .2em; margin-right: -.2em; }
+  .hero { padding-inline: 18px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition: none !important; }
+}
