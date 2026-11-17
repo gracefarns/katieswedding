@@ -1,4 +1,4 @@
-# Katie & William — wedding website
+# Katie & Will — wedding website
 
 A single-page site: Home, Our Story, Gallery, Registry, RSVP (before the wedding only) and a footer.
 Plain HTML, CSS and JavaScript — no build step. Open `index.html`, or host the folder anywhere
@@ -26,7 +26,8 @@ images/
   photos/     story-01…04 and gallery-01…06 (4:5 portrait) — generated PLACEHOLDERS, replace with your own
   florals/    hero-corner-top-left / -bottom-right (around the home card) and accent-… (above each heading)
   lace/       lace-drape (hero) and lace-trim (the hem above the gallery and footer)
-  textures/   deckled paper, ivory paper, burgundy and blush satin, embossed tulips, blush damask
+  textures/   deckled paper, ivory paper, blush satin (hero), burgundy satin (ribbon), embossed tulips in
+              blush (gallery) and burgundy (footer), blush damask (registry)
   seal/       the gold K&W wax seal and the browser-tab icon
 inspo/        the original reference images
 ```
