@@ -66,7 +66,7 @@ window.WEDDING_CONFIG = {
   colors: {
     plum:        '#5A2145',   // Plum (from inspo/plumcolor.jpg) – headings on light, buttons, the lettering, menu
     plumSoft:    '#7A3A60',   // Soft plum – small labels and links on light backgrounds (passes WCAG AA on blush)
-    berry:       '#8A2B57',   // Berry pink – the gallery background
+    berry:       '#7A234C',   // Berry pink – the gallery background
     cabernet:    '#52171C',   // Cabernet Velvet – the satin ribbon
     blackCherry: '#240C0E',   // Black Cherry – the deepest shadows in the footer
     rosewood:    '#985B5D',   // Dusty Rosewood – hairlines and decorative lines only (too light for text)
