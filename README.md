@@ -23,13 +23,16 @@ Keep the file names and drop new files into the same folders.
 
 ```
 images/
-  photos/     story-01…04 (4:5 portrait) and gallery-01…06 — PLACEHOLDERS, replace with your own
-  florals/    cut-out flower clusters and the small accents above each heading
+  photos/     story-01…04 and gallery-01…06 (4:5 portrait) — generated PLACEHOLDERS, replace with your own
+  florals/    hero-corner-top-left / -bottom-right (around the home card) and accent-… (above each heading)
   lace/       lace-drape (hero) and lace-trim (the hem above the gallery and footer)
   textures/   deckled paper, ivory paper, burgundy and blush satin, embossed tulips, blush damask
   seal/       the gold K&W wax seal and the browser-tab icon
-inspo/        the original reference images the textures were made from
+inspo/        the original reference images
 ```
+
+The flowers and photos were generated in Canva to match the references in `inspo/`; the flowers are
+cut-outs with transparent backgrounds (WebP). The lace and fabric textures were made from the references.
 
 To add a gallery photo, copy one `<li>…</li>` line in the Gallery section of `index.html`.
 Story text and dates are in the Our Story section of `index.html`.
