@@ -4,7 +4,7 @@
    1. Fill in names / date / venue from config.js
    2. RSVP: remove it after the wedding (or when switched off) and send any
       #rsvp link back to the top of the page
-   3. Registry cards
+   3. Registry cards and the wedding-day schedule
    4. RSVP form
    5. Gallery lightbox
    6. The soft fade as the page opens
@@ -45,6 +45,18 @@
   $$('[data-phase-only]').forEach(function (el) {
     if (el.getAttribute('data-phase-only') !== (state.after ? 'after' : 'before')) el.remove();
   });
+
+  /* After the wedding the schedule section is gone: send #schedule links home */
+  if (state.after) {
+    var scheduleHome = function () {
+      if (window.location.hash.toLowerCase() === '#schedule') {
+        history.replaceState(null, '', window.location.pathname + window.location.search + '#home');
+        window.scrollTo(0, 0);
+      }
+    };
+    scheduleHome();
+    window.addEventListener('hashchange', scheduleHome);
+  }
 
   /* ---- 2. RSVP visibility ----------------------------------------------- */
   if (!state.rsvpOpen) {
@@ -89,6 +101,44 @@
       li.appendChild(link);
 
       list.appendChild(li);
+    });
+  }
+
+  /* Wedding-day schedule, from the "schedule" list in config.js */
+  var schedule = $('#schedule-list');
+  if (schedule) {
+    (cfg.schedule || []).forEach(function (item) {
+      var li = document.createElement('li');
+      li.className = 'schedule__item';
+
+      var time = document.createElement('p');
+      time.className = 'schedule__time';
+      time.textContent = item.time || '';
+      li.appendChild(time);
+
+      var body = document.createElement('div');
+      body.className = 'schedule__body';
+
+      var title = document.createElement('h3');
+      title.className = 'schedule__title';
+      title.textContent = item.title || '';
+      body.appendChild(title);
+
+      if (item.place) {
+        var place = document.createElement('p');
+        place.className = 'schedule__place';
+        place.textContent = item.place;
+        body.appendChild(place);
+      }
+      if (item.note) {
+        var note = document.createElement('p');
+        note.className = 'schedule__note';
+        note.textContent = item.note;
+        body.appendChild(note);
+      }
+
+      li.appendChild(body);
+      schedule.appendChild(li);
     });
   }
 

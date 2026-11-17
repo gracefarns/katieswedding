@@ -26,6 +26,7 @@
     <ul class="nav__list">
       <li class="nav__home"><a href="#home">Home</a></li>
       <li><a href="#story">Our Story</a></li>
+      <li data-phase-only="before"><a href="#schedule">Wedding Day</a></li>
       <li><a href="#gallery">Gallery</a></li>
       <li><a href="#registry">Registry</a></li>
       <li data-rsvp-only><a href="#rsvp">RSVP</a></li>
@@ -129,8 +130,23 @@
       </div>
     </section>
 
+    <!-- ====================== WEDDING DAY (before the wedding only) ====================== -->
+    <!-- The times are written from the "schedule" list in config.js -->
+    <section class="section section--lace" id="schedule" data-phase-only="before">
+      <div class="lace-hem" aria-hidden="true"></div>
+      <div class="wrap wrap--narrow">
+        <header class="section__head">
+          <p class="label">The order of the day</p>
+          <h2 class="heading">Wedding Day</h2>
+          <p class="lede" data-fill="dateLong">February 20, 2027</p>
+        </header>
+
+        <ol class="schedule" id="schedule-list"></ol>
+      </div>
+    </section>
+
     <!-- ====================== GALLERY ====================== -->
-    <section class="section section--tulip" id="gallery">
+    <section class="section section--berry" id="gallery">
       <div class="wrap wrap--wide">
         <header class="section__head">
           <img class="floral section__floral" src="images/florals/accent-hydrangea.webp" alt="" width="1000" height="299" loading="lazy">
@@ -145,6 +161,19 @@
           <li><button class="gallery__item" type="button" data-full="images/photos/gallery-04.jpg"><img src="images/photos/gallery-04.jpg" alt="Lace gown train in window light" width="1200" height="1500" loading="lazy"></button></li>
           <li><button class="gallery__item" type="button" data-full="images/photos/gallery-05.jpg"><img src="images/photos/gallery-05.jpg" alt="Sweetheart table with lace and velvet" width="1200" height="1500" loading="lazy"></button></li>
           <li><button class="gallery__item" type="button" data-full="images/photos/gallery-06.jpg"><img src="images/photos/gallery-06.jpg" alt="Invitation with lace band and gold wax seal" width="1200" height="1500" loading="lazy"></button></li>
+          <!-- Placeholders: replace each one with a photo line like those above -->
+          <li class="gallery__slot" aria-hidden="true"><div class="gallery__placeholder"><span>Photo to come</span></div></li>
+          <li class="gallery__slot" aria-hidden="true"><div class="gallery__placeholder"><span>Photo to come</span></div></li>
+          <li class="gallery__slot" aria-hidden="true"><div class="gallery__placeholder"><span>Photo to come</span></div></li>
+          <li class="gallery__slot" aria-hidden="true"><div class="gallery__placeholder"><span>Photo to come</span></div></li>
+          <li class="gallery__slot" aria-hidden="true"><div class="gallery__placeholder"><span>Photo to come</span></div></li>
+          <li class="gallery__slot" aria-hidden="true"><div class="gallery__placeholder"><span>Photo to come</span></div></li>
+          <li class="gallery__slot" aria-hidden="true"><div class="gallery__placeholder"><span>Photo to come</span></div></li>
+          <li class="gallery__slot" aria-hidden="true"><div class="gallery__placeholder"><span>Photo to come</span></div></li>
+          <li class="gallery__slot" aria-hidden="true"><div class="gallery__placeholder"><span>Photo to come</span></div></li>
+          <li class="gallery__slot" aria-hidden="true"><div class="gallery__placeholder"><span>Photo to come</span></div></li>
+          <li class="gallery__slot" aria-hidden="true"><div class="gallery__placeholder"><span>Photo to come</span></div></li>
+          <li class="gallery__slot" aria-hidden="true"><div class="gallery__placeholder"><span>Photo to come</span></div></li>
         </ul>
       </div>
     </section>

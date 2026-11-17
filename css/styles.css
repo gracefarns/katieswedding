@@ -3,10 +3,13 @@
    Colours and fonts are NOT set here: they come from config.js (see the
    --variables below, which js/boot.js fills in). Images live in /images.
 
-   1. Base            5. Our Story (timeline)   9. Footer
-   2. Shared pieces   6. Gallery + lightbox    10. Small screens
-   3. Navigation      7. Registry
-   4. Home (hero)     8. RSVP
+   1. Base            5. Our Story (timeline)   8. RSVP
+   2. Shared pieces   5b. Wedding Day          9. Footer
+   3. Navigation      6. Gallery + lightbox    10. Small screens
+   4. Home (hero)     7. Registry
+
+   Text on light backgrounds is plum (--plum, --plum-soft, --text-on-light);
+   every text colour meets WCAG AA contrast on the background it sits on.
    ========================================================================== */
 
 /* ---------- 1. Base ------------------------------------------------------- */
@@ -50,11 +53,12 @@ html:not([data-rsvp="open"]) [data-rsvp-only] { display: none !important; }
 
 .skip-link {
   position: absolute; left: -999px; top: 0; z-index: 100;
-  padding: 10px 18px; background: var(--ivory); color: var(--cabernet);
+  padding: 10px 18px; background: var(--ivory); color: var(--plum);
 }
 .skip-link:focus { left: 12px; top: 12px; }
 
-:focus-visible { outline: 1px solid var(--gold); outline-offset: 4px; }
+:focus-visible { outline: 2px solid var(--plum-soft); outline-offset: 4px; }
+.section--lace :focus-visible, .section--berry :focus-visible, .footer :focus-visible { outline-color: var(--petal); }
 
 /* ---------- 2. Shared pieces ---------------------------------------------- */
 .wrap         { width: min(100% - 48px, 880px);  margin-inline: auto; position: relative; }
@@ -76,9 +80,32 @@ html:not([data-rsvp="open"]) [data-rsvp-only] { display: none !important; }
   opacity: .42;
 }
 
-/* blush paper with the embossed tulips, tone on tone */
-.section--tulip {
-  background: var(--petal) url("../images/textures/tulip-emboss-blush.jpg") center top / 640px auto;
+/* berry-pink paper with the embossed tulips, tone on tone (the gallery) */
+.section--berry {
+  color: var(--ivory);
+  background: var(--berry) url("../images/textures/tulip-emboss-blush.jpg") center top / 640px auto;
+  background-blend-mode: multiply;
+}
+
+/* deep plum lace (from inspo/weddingdaybackground.jpg), for the wedding-day schedule */
+.section--lace {
+  color: var(--text-on-dark);
+  background: #240A15 url("../images/textures/lace-plum.jpg") center / cover;
+}
+.section--lace::before {                    /* a soft veil so the lettering always reads clearly */
+  content: ""; position: absolute; inset: 0; z-index: -1;
+  background: radial-gradient(ellipse 60% 70% at 50% 50%, rgba(28, 6, 16, .5), rgba(28, 6, 16, .25));
+}
+
+/* headings and labels on the two dark sections */
+.section--lace .heading, .section--berry .heading { color: var(--ivory); }
+.section--lace .label, .section--berry .label { color: var(--petal); }
+.section--lace .section__head::after, .section--berry .section__head::after {
+  background:
+    linear-gradient(var(--gold), var(--gold)) center / 5px 5px no-repeat,
+    linear-gradient(var(--petal), var(--petal)) left center / 50px 1px no-repeat,
+    linear-gradient(var(--petal), var(--petal)) right center / 50px 1px no-repeat;
+  opacity: .8;
 }
 
 /* the one deep note: wine-coloured paper with the embossed tulips, for the footer */
@@ -111,11 +138,11 @@ html:not([data-rsvp="open"]) [data-rsvp-only] { display: none !important; }
   letter-spacing: .34em;
   text-transform: uppercase;
   text-wrap: balance;
-  color: var(--rosewood);
+  color: var(--plum-soft);
 }
-.label--ink { color: var(--ink); }
+.label--ink { color: var(--plum); }
 .label i { font-style: normal; margin: 0 .7em; color: var(--gold); }
-.label__aside { letter-spacing: .2em; opacity: .75; }
+.label__aside { letter-spacing: .2em; }
 
 .heading {
   font-family: var(--font-heading);
@@ -125,7 +152,7 @@ html:not([data-rsvp="open"]) [data-rsvp-only] { display: none !important; }
   letter-spacing: .26em;
   margin-right: -.26em;                     /* optically re-centres tracked caps */
   text-transform: uppercase;
-  color: var(--cabernet);
+  color: var(--plum);
 }
 
 .subheading {
@@ -135,7 +162,7 @@ html:not([data-rsvp="open"]) [data-rsvp-only] { display: none !important; }
   letter-spacing: .22em;
   margin-right: -.22em;
   text-transform: uppercase;
-  color: var(--cabernet);
+  color: var(--plum);
   margin-bottom: 14px;
 }
 
@@ -146,7 +173,7 @@ html:not([data-rsvp="open"]) [data-rsvp-only] { display: none !important; }
   font-size: 21px;
   letter-spacing: .24em; margin-right: -.24em;
   text-transform: lowercase;
-  color: var(--rosewood);
+  color: var(--plum-soft);
 }
 
 .section__head { text-align: center; margin-bottom: 80px; }
@@ -173,9 +200,9 @@ html:not([data-rsvp="open"]) [data-rsvp-only] { display: none !important; }
 .button {
   display: inline-block;
   padding: 17px 46px 16px;
-  border: 1px solid var(--cabernet);
+  border: 1px solid var(--plum);
   border-radius: 0;
-  background: var(--cabernet);
+  background: var(--plum);
   color: var(--ivory);
   font-family: var(--font-heading);
   font-weight: 500;
@@ -186,7 +213,7 @@ html:not([data-rsvp="open"]) [data-rsvp-only] { display: none !important; }
   cursor: pointer;
   transition: background-color .35s ease, color .35s ease, border-color .35s ease;
 }
-.button:hover, .button:focus-visible { background: var(--petal); color: var(--cabernet); }
+.button:hover, .button:focus-visible { background: var(--petal); color: var(--plum); }
 
 /* scalloped lace hem along the top of the burgundy footer */
 .lace-hem {
@@ -225,12 +252,11 @@ html:not([data-rsvp="open"]) [data-rsvp-only] { display: none !important; }
   margin-right: -.34em;
   text-transform: uppercase;
   text-decoration: none;
-  color: var(--cabernet);
-  opacity: .85;
+  color: var(--plum);
   border-bottom: 1px solid transparent;
-  transition: color .3s ease, border-color .3s ease, opacity .3s ease;
+  transition: color .3s ease, border-color .3s ease;
 }
-.nav a:hover, .nav a:focus-visible { color: var(--rosewood); opacity: 1; border-bottom-color: var(--gold); }
+.nav a:hover, .nav a:focus-visible { color: var(--plum-soft); border-bottom-color: var(--plum-soft); }
 
 /* ---------- 4. Home (hero) ------------------------------------------------ */
 .hero {
@@ -269,7 +295,8 @@ html:not([data-rsvp="open"]) [data-rsvp-only] { display: none !important; }
 .hero__names { margin: 20px 0 16px; }
 .hero__lettering {                          /* the save-the-date lettering, tinted with the heading colour */
   display: block; width: min(84%, 350px); aspect-ratio: 932 / 898; margin: 0 auto;
-  background: var(--cabernet);
+  transform: translateX(-4%);               /* the ink sits right of the box's centre; this centres it to the eye */
+  background: var(--plum);
   -webkit-mask: url("../images/lettering/katie-and-will.svg") center / contain no-repeat;
           mask: url("../images/lettering/katie-and-will.svg") center / contain no-repeat;
 }
@@ -292,7 +319,7 @@ html:not([data-rsvp="open"]) [data-rsvp-only] { display: none !important; }
   letter-spacing: .3em;
   margin-right: -.3em;
   text-transform: uppercase;
-  color: var(--ink);
+  color: var(--plum);
 }
 .hero__dateline i { font-style: normal; margin: 0 .7em; color: var(--gold); }
 .hero__dateline span { white-space: nowrap; }
@@ -334,6 +361,36 @@ html:not([data-rsvp="open"]) [data-rsvp-only] { display: none !important; }
   background: linear-gradient(135deg, #d9bf8c, var(--gold) 55%, #8a6b3c);
 }
 
+/* ---------- 5b. Wedding Day ------------------------------------------------ */
+.section--lace .lede { color: var(--petal); margin-top: 18px; letter-spacing: .04em; }
+.schedule { position: relative; }
+.schedule__item {
+  display: grid;
+  grid-template-columns: 9em 1fr;
+  column-gap: 44px;
+  align-items: baseline;
+  padding: 26px 0;
+}
+.schedule__item + .schedule__item { border-top: 1px solid rgba(176, 141, 87, .45); }
+.schedule__time {
+  margin: 0; text-align: right;
+  font-family: var(--font-heading); font-weight: 500; font-size: 15px;
+  letter-spacing: .26em; text-transform: uppercase; white-space: nowrap;
+  color: #E2C79A;                           /* a lighter gold, so it reads on the lace */
+}
+.schedule__title {
+  font-family: var(--font-heading); font-weight: 400; font-size: 23px; line-height: 1.35;
+  letter-spacing: .18em; text-transform: uppercase;
+  color: var(--ivory);
+}
+.schedule__place {
+  margin: 4px 0 0;
+  font-family: var(--font-heading); font-weight: 500; font-size: 13px;
+  letter-spacing: .26em; text-transform: uppercase;
+  color: var(--petal);
+}
+.schedule__note { margin: 6px 0 0; font-style: italic; font-size: 18px; line-height: 1.6; color: var(--text-on-dark); }
+
 /* ---------- 6. Gallery + lightbox ------------------------------------------ */
 .gallery {
   display: grid;
@@ -344,10 +401,24 @@ html:not([data-rsvp="open"]) [data-rsvp-only] { display: none !important; }
   display: block; width: 100%; margin: 0; padding: 9px;
   border: 0; border-radius: 0; cursor: zoom-in;
   background: var(--ivory) url("../images/textures/paper-ivory.jpg") 0 0 / 280px 280px;   /* thin paper border */
-  box-shadow: 0 20px 30px -18px rgba(82, 23, 28, .55), 0 2px 5px rgba(82, 23, 28, .18);
+  box-shadow: 0 20px 30px -18px rgba(40, 8, 24, .55), 0 2px 5px rgba(40, 8, 24, .18);
 }
 .gallery__item img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; transition: opacity .4s ease; }
 .gallery__item:hover img, .gallery__item:focus-visible img { opacity: .86; }
+
+/* empty frames waiting for photos */
+.gallery__placeholder {
+  padding: 9px;
+  background: var(--ivory) url("../images/textures/paper-ivory.jpg") 0 0 / 280px 280px;
+  box-shadow: 0 20px 30px -18px rgba(40, 8, 24, .55), 0 2px 5px rgba(40, 8, 24, .18);
+}
+.gallery__placeholder span {
+  display: grid; place-items: center; aspect-ratio: 4 / 5;
+  border: 1px solid rgba(122, 58, 96, .35);
+  background: rgba(235, 214, 213, .5);
+  font-family: var(--font-heading); font-style: italic; font-size: 18px; letter-spacing: .12em;
+  color: var(--plum-soft);
+}
 
 .lightbox {
   position: fixed; inset: 0; z-index: 50;
@@ -369,10 +440,10 @@ html:not([data-rsvp="open"]) [data-rsvp-only] { display: none !important; }
   background: none; border: 0; padding: 12px 6px; cursor: pointer;
   font-family: var(--font-heading); font-weight: 500; font-size: 12px;
   letter-spacing: .34em; text-transform: uppercase;
-  color: var(--cabernet); opacity: .8;
-  transition: color .3s ease, opacity .3s ease;
+  color: var(--plum);
+  transition: color .3s ease;
 }
-.lightbox button:hover, .lightbox button:focus-visible { color: var(--rosewood); opacity: 1; }
+.lightbox button:hover, .lightbox button:focus-visible { color: var(--plum-soft); }
 .lightbox__close { position: absolute; top: 20px; right: 28px; }
 .lightbox__nav--prev { grid-column: 1; justify-self: end; }
 .lightbox__nav--next { grid-column: 3; justify-self: start; }
@@ -391,9 +462,9 @@ html:not([data-rsvp="open"]) [data-rsvp-only] { display: none !important; }
 .registry__name {
   font-family: var(--font-heading); font-weight: 400; font-size: 21px;
   letter-spacing: .2em; margin-right: -.2em; text-transform: uppercase;
-  color: var(--cabernet); line-height: 1.4;
+  color: var(--plum); line-height: 1.4;
 }
-.registry__note { margin: 8px 0 0; font-style: italic; font-size: 17px; color: var(--text-on-light); opacity: .8; }
+.registry__note { margin: 8px 0 0; font-style: italic; font-size: 17px; color: var(--plum-soft); }
 .registry__card::after {                    /* the one leaf-green touch */
   content: ""; display: block; width: 5px; height: 5px; margin: 20px auto 18px;
   background: var(--green); transform: rotate(45deg);
@@ -402,11 +473,11 @@ html:not([data-rsvp="open"]) [data-rsvp-only] { display: none !important; }
   order: 3;
   font-family: var(--font-heading); font-weight: 500; font-size: 12px;
   letter-spacing: .32em; margin-right: -.32em; text-transform: uppercase; text-decoration: none;
-  color: var(--rosewood);
+  color: var(--plum-soft);
   padding-bottom: 5px; border-bottom: 1px solid currentColor;
   transition: color .3s ease;
 }
-.registry__link:hover, .registry__link:focus-visible { color: var(--cabernet); }
+.registry__link:hover, .registry__link:focus-visible { color: var(--plum); }
 .registry__card { display: flex; flex-direction: column; align-items: center; }
 .registry__card::after { order: 2; }
 
@@ -423,7 +494,7 @@ html:not([data-rsvp="open"]) [data-rsvp-only] { display: none !important; }
   transition: border-color .3s ease;
   resize: none;
 }
-.field input[type="text"]:focus, .field textarea:focus { outline: 0; border-bottom-color: var(--cabernet); box-shadow: 0 1px 0 var(--cabernet); }
+.field input[type="text"]:focus, .field textarea:focus { outline: 0; border-bottom-color: var(--plum); box-shadow: 0 1px 0 var(--plum); }
 
 .field--choice legend { padding: 0; margin-bottom: 14px; }
 .choice { display: inline-flex; align-items: center; gap: 12px; margin-right: 40px; cursor: pointer; font-size: 20px; font-style: italic; }
@@ -435,10 +506,10 @@ html:not([data-rsvp="open"]) [data-rsvp-only] { display: none !important; }
   background: transparent;
   transition: background-color .3s ease, border-color .3s ease, box-shadow .3s ease;
 }
-.choice input:checked { background: var(--cabernet); border-color: var(--cabernet); box-shadow: inset 0 0 0 3px var(--ivory); }
-.choice:hover input { border-color: var(--cabernet); }
+.choice input:checked { background: var(--plum); border-color: var(--plum); box-shadow: inset 0 0 0 3px var(--ivory); }
+.choice:hover input { border-color: var(--plum); }
 
-.form__message { min-height: 1.75em; margin: 28px 0 0; font-style: italic; color: var(--cabernet); }
+.form__message { min-height: 1.75em; margin: 28px 0 0; font-style: italic; color: var(--plum); }
 .form.is-sent .field, .form.is-sent .button { display: none; }
 .form.is-sent .form__message { font-size: 23px; margin-top: 0; }
 
@@ -480,9 +551,9 @@ html:not([data-rsvp="open"]) [data-rsvp-only] { display: none !important; }
   .section__floral { width: min(320px, 84%); }
   .heading { letter-spacing: .2em; margin-right: -.2em; }
 
-  .nav__list { gap: 26px; }
+  .nav__list { gap: 14px; padding: 0 12px; }
   .nav__home { display: none; }
-  .nav a { font-size: 11px; letter-spacing: .26em; margin-right: -.26em; }
+  .nav a { font-size: 11px; letter-spacing: .16em; margin-right: -.16em; }
 
   .paper, .registry__card { border-width: 30px; border-image-width: 56px; border-image-outset: 26px; }
 
@@ -504,7 +575,12 @@ html:not([data-rsvp="open"]) [data-rsvp-only] { display: none !important; }
   .timeline__ornament::before, .timeline__ornament::after { height: 30px; }
 
   .gallery { gap: 30px 26px; }
-  .gallery__item { padding: 6px; }
+  .gallery__item, .gallery__placeholder { padding: 6px; }
+  .gallery__placeholder span { font-size: 15px; letter-spacing: .06em; }
+
+  .schedule__item { display: block; text-align: center; padding: 24px 0; }
+  .schedule__time { text-align: center; margin-bottom: 6px; }
+  .schedule__title { font-size: 20px; letter-spacing: .14em; }
 
   .lightbox { grid-template-columns: 1fr 1fr; grid-template-rows: 1fr auto; padding: 64px 16px 20px; gap: 12px; }
   .lightbox__figure { grid-column: 1 / -1; grid-row: 1; justify-self: center; }
@@ -527,8 +603,8 @@ html:not([data-rsvp="open"]) [data-rsvp-only] { display: none !important; }
 }
 
 @media (max-width: 380px) {
-  .nav__list { gap: 16px; }
-  .nav a { font-size: 10px; letter-spacing: .2em; margin-right: -.2em; }
+  .nav__list { gap: 12px; justify-content: safe center; overflow-x: auto; scrollbar-width: none; }
+  .nav a { font-size: 10px; letter-spacing: .1em; margin-right: -.1em; }
   .hero { padding-inline: 18px; }
 }
 
