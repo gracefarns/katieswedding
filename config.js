@@ -53,7 +53,7 @@ window.WEDDING_CONFIG = {
   colors: {
     cabernet:    '#52171C',   // Cabernet Velvet – headings on light, buttons, monogram
     blackCherry: '#240C0E',   // Black Cherry – the deepest shadows in the footer
-    rosewood:    '#985B5D',   // Dusty Rosewood – script accents, small labels, hairlines
+    rosewood:    '#985B5D',   // Dusty Rosewood – italic accents, small labels, hairlines
     petal:       '#EBD6D5',   // Soft Petal – hero satin, light section backgrounds, hover states
     ivory:       '#F7F1EA',   // Ivory paper and lace
     ink:         '#2E1F2A',   // Blackberry Ink – small details only
@@ -64,13 +64,18 @@ window.WEDDING_CONFIG = {
     textOnDark:  '#F3E9E2'
   },
 
+  /* ---- The names in script -------------------------------------------------
+     "Katie & Will" on the home card is not a font: it is the hand-lettering
+     from the save-the-date, saved as images/lettering/katie-and-will.svg and
+     tinted with the cabernet colour above. Changing the names in `couple`
+     does not redraw it; replace that file to change the lettering.          */
+
   /* ---- Fonts --------------------------------------------------------------
      To change a typeface, change its name here AND in googleFontsUrl
      (fonts.google.com gives you the address).                               */
   fonts: {
     heading: "'Cormorant Garamond', 'Times New Roman', serif",
-    script:  "'WindSong', 'Snell Roundhand', cursive",
     body:    "'EB Garamond', 'Cormorant Garamond', Georgia, serif",
-    googleFontsUrl: 'https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=WindSong:wght@400;500&display=swap'
+    googleFontsUrl: 'https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap'
   }
 };

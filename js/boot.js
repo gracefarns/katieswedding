@@ -15,7 +15,6 @@
     '--petal': c.petal, '--ivory': c.ivory, '--ink': c.ink, '--green': c.green, '--gold': c.gold, '--wine': c.wine,
     '--text-on-light': c.textOnLight, '--text-on-dark': c.textOnDark,
     '--font-heading': (cfg.fonts || {}).heading,
-    '--font-script': (cfg.fonts || {}).script,
     '--font-body': (cfg.fonts || {}).body
   };
   Object.keys(vars).forEach(function (k) { if (vars[k]) root.style.setProperty(k, vars[k]); });
